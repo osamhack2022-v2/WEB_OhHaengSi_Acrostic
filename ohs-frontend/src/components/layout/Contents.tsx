@@ -1,8 +1,10 @@
 import React from 'react';
-import { getCookie } from '../utils/Cookie';
+import { getCookie } from '../../utils/Cookie';
+import Board from './Board';
+import CleaningEach from './Cleaning';
 import Emergency from './Emergency';
 import Login from './Login';
-import PersonnelStatus from './PersonnelStatus';
+import PersonnelStatus from './Personnel';
 import Schedule from './Schedule';
 
 interface ContentsProps {
@@ -18,9 +20,9 @@ function Contents(props: ContentsProps): React.ReactElement {
     } else if (props.content === 2) {
       return <Schedule />;
     } else if (props.content === 3) {
-      return <div>임무분담제입니다.</div>;
+      return <CleaningEach />;
     } else if (props.content === 4) {
-      return <div>전파사항입니다.</div>;
+      return <Board />;
     } else if (props.content === 5) {
       return <Emergency />;
     } else {
