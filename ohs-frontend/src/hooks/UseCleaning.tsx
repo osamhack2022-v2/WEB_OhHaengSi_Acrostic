@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NonceProvider } from 'react-select';
+import { serverURL } from '../utils/constants';
 
 type data = {
   room: number;
@@ -38,7 +39,7 @@ function UseCleaning(Prop: prop) {
   // 사용자에게 보여줄 데이터를 전송하는 함수
   const getData = () => {
     axios
-      .get('https://ohs.run.goorm.io/cleaning/' + Prop.room + '/' + Prop.date)
+      .get(serverURL + '/cleaning/' + Prop.room + '/' + Prop.date)
       .then((response: any) => {
         console.log(response);
 

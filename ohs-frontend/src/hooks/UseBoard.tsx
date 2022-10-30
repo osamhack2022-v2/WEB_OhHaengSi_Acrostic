@@ -1,24 +1,31 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { serverURL } from '../utils/constants';
 
-type writer = { id: number; username: string; name: string; rank: string };
-type item = {
+type Writer = {
+  id: number;
+  username: string;
+  name: string;
+  rank: string;
+};
+
+type Item = {
   id: number;
   title: string;
   type: string;
   content: string;
-  writer: writer;
+  writer: Writer;
   createdAt: string;
   writerId: number;
 };
-type prop = { date: string };
+type Prop = { date: string };
 
-function UseBoard(Prop: prop) {
-  const [items, setItems] = useState<item[]>([]);
+function UseBoard(Prop: Prop) {
+  const [items, setItems] = useState<Item[]>([]);
 
   const getData = async () => {
     axios
-      .get('https://ohs.run.goorm.io/notice/')
+      .get(serverURL + '/notice/')
       .then((response: any) => {
         console.log(response);
         setItems(response.data.items);

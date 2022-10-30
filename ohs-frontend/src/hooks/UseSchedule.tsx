@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { serverURL } from '../utils/constants';
 
 type member = { rosterId: number; name: string; rankName: string; checked: boolean };
 type work = { name: string; members: (member | null)[] };
@@ -15,7 +16,7 @@ function UseSchedule(Prop: prop) {
   // 근무자 확인완료 시 실행 함수
   const confirm = (worker: member, idx: number, i: number, j: number) => {
     axios
-      .patch('https://ohs.run.goorm.io/roster/' + worker.rosterId, { checked: true })
+      .patch(serverURL + '/roster/' + worker.rosterId, { checked: true })
       .then((response: any) => {
         console.log(response);
 
@@ -31,7 +32,7 @@ function UseSchedule(Prop: prop) {
   // 사용자에게 보여줄 데이터를 전송하는 함수
   const getData = async () => {
     axios
-      .get('https://ohs.run.goorm.io/roster/' + Prop.date)
+      .get(serverURL + '/roster/' + Prop.date)
       .then((response: any) => {
         console.log(response);
         setRoster(response.data.roster);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { serverURL } from '../utils/constants';
 
 type prop = { id: number };
 
@@ -22,7 +23,7 @@ function UsePersonnel(Prop: prop) {
       status: state,
     };
     axios
-      .patch('https://ohs.run.goorm.io/soldiers/' + soldier.id, chSoldier)
+      .patch(serverURL + '/soldiers/' + soldier.id, chSoldier)
       .then((response: any) => {
         console.log(response);
         getData();
@@ -35,7 +36,7 @@ function UsePersonnel(Prop: prop) {
   // 사용자에게 보여줄 데이터를 전송하는 함수
   const getData = async () => {
     axios
-      .get('https://ohs.run.goorm.io/room/' + Prop.id)
+      .get(serverURL + '/room/' + Prop.id)
       .then((response: any) => {
         console.log(response);
         setMembersData(response.data.room.members);
