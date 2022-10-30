@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import rankToString from 'src/lib/helpers/rankToString';
-import { Repository } from 'typeorm';
+import { Raw, Repository } from 'typeorm';
 import { CreateRosterDto, CreateRosterFormDto } from './dto/create-roster.dto';
 import {
   IOrganizedRoster,
@@ -94,7 +94,11 @@ export class RosterService {
   async findOne(date: Date): Promise<IRosterResponse> {
     // date에 맞는 근무표 조회
     let rosters = await this.rosterRepo.find({
-      where: { targetDate: date },
+      where: {
+        targetDate: Raw((alias) => `${alias} = :date`, {
+          date: date.toISOString(),
+        }),
+      },
       relations: { inCharge: true },
     });
 
