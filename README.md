@@ -36,12 +36,22 @@
 ### Server(back-end)
  - Node.js, TypeScript,
  - NestJS 
- - MariaDB 
+ - Momemont
+ - Mysql 8.0 
  
 ### Front-end
- - React 
- - UI framework (추가예정)
- - 기타 사용한 라이브러리 (추가예정)
+ - Javascript, Typescript
+ - React
+ - Axios
+ - Webpack
+ 
+### 관리 시스템
+ - Javascript, Typescript
+ - React
+ - Fontawesome
+ - Redux 
+ - Chart.js
+ - Next.js
 
 ## 설치 안내 (Installation Process)
 ```bash
